@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "create-next-app": "^15.0.3",
+    "pnpm": "^9.13.2",
+    "react": "^18.3.1"
+  }
+}
