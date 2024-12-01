@@ -1,8 +1,8 @@
 // import bcrypt from 'bcrypt';
-// import { db } from '@vercel/postgres';
+import { db } from '@vercel/postgres';
 // import { invoices, customers, revenue, users } from '../lib/placeholder-data';
 
-// const client = await db.connect();
+const client = await db.connect();
 
 // async function seedUsers() {
 //   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -101,10 +101,18 @@
 //   return insertedRevenue;
 // }
 
+async function listInvoices() {
+  const invoices = await client.sql`
+    SELECT * FROM invoices;
+  `;
+
+  return invoices;
+}
+
 export async function GET() {
+  const invoices = await listInvoices();
   return Response.json({
-    message:
-      'Uncomment this file and remove this line. You can delete this file when you are finished.',
+    message: invoices,
   });
   // try {
   //   await client.sql`BEGIN`;
